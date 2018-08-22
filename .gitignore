@@ -2,6 +2,7 @@ Source: https://github.com/github/gitignore/blob/master/Python.gitignore
 
 # User generated
 ENV/
+.env
 .vscode
 .idea
 .DS_Store
