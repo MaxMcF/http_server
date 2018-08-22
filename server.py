@@ -1,9 +1,15 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse, parse_qs
 from cowpy import cow
+import httpie
 import os
 
 
+cheese = cow.Beavis()
+
+msg = cheese.milk('This is the message')
+
+print(msg)
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -23,8 +29,14 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(b'<html><body><h1>Hello World!</h1></body></html>')
             return
 
-        elif parsed_path.path == '/banana':
-            pass
+        elif parsed_path.path == '/cow':
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html')
+            self.end_headers()
+            # msg = parsed_qs['msg'][0]
+            self.wfile.write(msg.encode())
+                # self.wfile.write(b'<html><body><h1>Cow!</h1></body></html>')
+            return
 
         self.send_response(404)
         self.end_headers()
