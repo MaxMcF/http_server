@@ -54,9 +54,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             msg = parse_qs['msg'][0]
 
 
-
-
-
 def create_server():
     return HTTPServer(
         ('127.0.0.1', int(os.environ['PORT'])),
