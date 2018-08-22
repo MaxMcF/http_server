@@ -5,6 +5,11 @@ import httpie
 import os
 
 
+cheese = cow.Beavis()
+
+msg = cheese.milk('This is the message')
+
+print(msg)
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -28,12 +33,9 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-Type', 'text/html')
             self.end_headers()
-            if parsed_qs is not None:
-                msg = parsed_qs['msg'][0]
-                beavis_message = cow.Beavis().milk(msg)
-                self.wfile.write(beavis_message.encode())
-            else:
-                self.wfile.write(b'<html><body><h1>Cow!</h1></body></html>')
+            # msg = parsed_qs['msg'][0]
+            self.wfile.write(msg.encode())
+                # self.wfile.write(b'<html><body><h1>Cow!</h1></body></html>')
             return
 
         self.send_response(404)
