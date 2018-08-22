@@ -5,11 +5,11 @@ import httpie
 import os
 
 
-cheese = cow.Beavis()
+# cheese = cow.Beavis()
 
-msg = cheese.milk('This is the message')
+# msg = cheese.milk('This is the message')
 
-print(msg)
+# print(msg)
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -33,8 +33,9 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-Type', 'text/html')
             self.end_headers()
-            # msg = parsed_qs['msg'][0]
-            self.wfile.write(msg.encode())
+            msg = parsed_qs['msg'][0]
+            print(cow.Ghostbusters().milk(msg))
+            self.wfile.write(cow.Ghostbusters().milk(msg).encode())
                 # self.wfile.write(b'<html><body><h1>Cow!</h1></body></html>')
             return
 
@@ -42,7 +43,9 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_POST(self):
-        pass
+        parsed_path = urlparse(self.path)
+        parsed_qs = parse_qs(parsed_path.query)
+
 
 
 
