@@ -29,7 +29,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 cow_image = cow.Stegosaurus()
                 msg = cow_image.milk(parsed_qs['msg'][0])
                 self.send_response(200)
-                self.send_header('Content-Type', 'text/html')
+                # self.send_header('Content-Type', 'text/html')
                 self.end_headers()
                 self.wfile.write(msg.encode())
                 return
