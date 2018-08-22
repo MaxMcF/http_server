@@ -15,6 +15,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         # import pdb; pdb.set_trace()
         parsed_path = urlparse(self.path)
+        print(parsed_path)
         parsed_qs = parse_qs(parsed_path.query)
 
         # set a status code
@@ -34,9 +35,9 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.send_header('Content-Type', 'text/html')
             self.end_headers()
             msg = parsed_qs['msg'][0]
-            print(cow.Ghostbusters().milk(msg))
+            print(cow.Ghostbusters().milk(httpie.msg))
             self.wfile.write(cow.Ghostbusters().milk(msg).encode())
-                # self.wfile.write(b'<html><body><h1>Cow!</h1></body></html>')
+            # self.wfile.write(b'<html><body><h1>Cow!</h1></body></html>')
             return
 
         self.send_response(404)
@@ -45,6 +46,12 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         parsed_path = urlparse(self.path)
         parsed_qs = parse_qs(parsed_path.query)
+
+        if parsed_path.path == '/cow':
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.end_headers()
+            msg = parse_qs['msg'][0]
 
 
 
