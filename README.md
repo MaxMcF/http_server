@@ -16,7 +16,7 @@ Using python scripting language
 
 ## Changelog
 
-2018-08-21
+2018-08-21 (ATTEMPTED)
 =====
 
 - [] GET / - returns a valid HTML formatted response with a project description and an anchor tag which references a new request to GET /cow.
